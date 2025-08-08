@@ -1,0 +1,8 @@
+opencv-python==4.8.1.78
+deepface==0.0.79
+flask==2.3.3
+flask-cors==4.0.0
+numpy==1.24.3
+tensorflow==2.13.0
+mtcnn==0.1.1
+retina-face==0.0.13
