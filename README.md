@@ -3,7 +3,7 @@
 A web application that uses facial expression detection to verify whether a user's actual emotion matches the emoji they select. Features both Python backend (using OpenCV and DeepFace) and JavaScript frontend for maximum accuracy.
 
 Basic Details
-Team Name: QWQERTY
+Team Name: QWERTY
 Team Members
  * Team Lead: Muhammad Nasih N - GECI
  * Member 2: Abhiraj Krishna - GECI
