@@ -50,12 +50,28 @@ python3 emotion_detector.py
 Project Documentation
 For Software:
 Screenshots
-![Screenshot1](Add screenshot 1 here with proper name)
+
+<img width="3040" height="3180" alt="start page" src="https://github.com/user-attachments/assets/1be3ab54-acd2-427f-9243-d14e5247304d" />
 Caption: The main user interface with the camera feed active and emoji selection panel.
-![Screenshot2](Add screenshot 2 here with proper name)
+
+
+<img width="3040" height="3294" alt="happy win" src="https://github.com/user-attachments/assets/b6082460-1f4b-4f7d-9fb8-960ef7ea0fab" />
 Caption: A "✅ Great match" verification result after the user successfully matches their expression to the 'Happy' emoji.
-![Screenshot3](Add screenshot 3 here with proper name)
-Caption: A "❌ Mismatch" result, indicating the user's expression does not align with the selected emoji.
+
+<img width="3040" height="3294" alt="neutral win" src="https://github.com/user-attachments/assets/96e778c3-1711-4fed-80d4-0e0ba7263354" />
+Caption: A "✅ Great match" verification result after the user successfully matches their expression to the 'neutral' emoji.
+
+
+<img width="3040" height="3238" alt="happy fail" src="https://github.com/user-attachments/assets/5a1a472f-ce0a-42f1-a7ac-faf2ac6ab7e2" />
+Caption: A "❌ Mismatch" result, indicating the user's expression does not align with the selected emoji(happy).
+
+<img width="3040" height="3294" alt="neutral fail" src="https://github.com/user-attachments/assets/ba4b4939-f972-4809-adff-217459acfdb3" />
+Caption: A "❌ Mismatch" result, indicating the user's expression does not align with the selected emoji(neutral).
+
+
+<img width="3040" height="3238" alt="sad questionable" src="https://github.com/user-attachments/assets/c89cf963-cfd9-4629-9331-ad9017eab0d5" />
+Caption: A "⚠️ Questionable " result, indicating the user's expression align with the selected emoji(sad) but not with 100% certainty.
+
 Diagrams
 ![Workflow](Add your workflow/architecture diagram here)
 Caption: The application's architecture. The frontend first attempts to communicate with the Python Flask backend via a REST API for high-accuracy emotion detection. If the backend is unavailable, it automatically falls back to the in-browser TensorFlow.js model for processing.
