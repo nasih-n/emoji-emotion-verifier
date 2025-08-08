@@ -2,136 +2,85 @@
 
 A web application that uses facial expression detection to verify whether a user's actual emotion matches the emoji they select. Features both Python backend (using OpenCV and DeepFace) and JavaScript frontend for maximum accuracy.
 
-## Features
+Basic Details
+Team Name: QWQERTY
+Team Members
+ * Team Lead: Muhammad Nasih N - GECI
+ * Member 2: Abhiraj Krishna - GECI
 
-- **Dual Detection Systems**: 
-  - **Python Backend**: High-accuracy emotion detection using OpenCV and DeepFace
-  - **JavaScript Frontend**: Fallback detection using TensorFlow.js and MediaPipe Face Mesh
-- **Real-time facial expression detection** with automatic backend switching
-- **Emotion verification** that cross-checks selected emoji with detected facial expression
-- **Limited emotion set**: Happy, Sad, Angry, Fear, and Neutral (No emotion)
-- **Confidence scoring** to indicate how reliable the emotion detection is
-- **Modern, responsive UI** with beautiful design
-
-## How to Use
-
-1. **Open the application** in a modern web browser (Chrome, Firefox, Safari, Edge)
-2. **Allow camera permissions** when prompted
-3. **Click "Start Camera"** to begin facial detection
-4. **Select an emoji** that represents your current emotion
-5. **Express the emotion** on your face
-6. **View the verification result** to see if your expression matches your selection
-
-## Emotion Detection
-
-The application analyzes facial landmarks to detect emotions:
-
-- **Happy**: Wide mouth, raised cheeks
-- **Sad**: Downturned mouth, lowered eyebrows  
-- **Angry**: Furrowed brows, tight mouth
-- **Fear**: Wide eyes, raised eyebrows
-- **Neutral**: Balanced facial features
-
-## Verification Results
-
-- **✅ Great match**: Your expression genuinely matches the selected emotion (high confidence)
-- **⚠️ Low confidence**: Emotions match but detection confidence is low
-- **❌ Mismatch**: Your facial expression doesn't match the selected emotion
-
-## Technical Details
-
-### Python Backend (Primary)
-- **OpenCV**: Real-time video capture and image processing
-- **DeepFace**: Pre-trained deep learning models for emotion recognition
-- **Flask**: RESTful API server for communication with frontend
-- **TensorFlow**: Underlying ML framework for emotion classification
-
-### JavaScript Frontend (Fallback)
-- Built with vanilla JavaScript, HTML5, and CSS3
-- Uses TensorFlow.js for face landmark detection
-- MediaPipe Face Mesh model for facial feature extraction
-- Real-time video processing with WebRTC
-- Responsive design for mobile and desktop
-
-### Architecture
-- **Automatic Fallback**: If Python backend is unavailable, automatically switches to TensorFlow.js
-- **RESTful API**: Communication between frontend and Python backend
-- **Real-time Polling**: Continuous emotion detection with 100ms intervals
-
-## Browser Requirements
-
-- Modern browser with WebRTC support
-- Camera access permissions
-- JavaScript enabled
-- HTTPS connection (required for camera access in most browsers)
-
-## Privacy
-
-- All processing happens locally in your browser
-- No video data is sent to external servers
-- Camera access is only used for real-time emotion detection
-
-## Getting Started
-
-### Option 1: Python Backend (Recommended)
-1. **Install Python dependencies**:
-   ```bash
-   python3 setup.py
-   ```
-   Or manually:
-   ```bash
-   pip3 install -r requirements.txt
-   ```
-
-2. **Start the Python backend**:
-   ```bash
-   python3 emotion_detector.py
-   ```
-
-3. **Open the web interface**:
-   - Open `index.html` in your web browser
-   - Or use the startup script: `./start_emotion_detector.sh`
-
-### Option 2: JavaScript Only (Fallback)
-1. Open `index.html` in a web browser
-2. Allow camera permissions when prompted
-3. The system will automatically use TensorFlow.js if Python backend is unavailable
-
-### Quick Start
-```bash
-# Run the setup script
+Project Description
+An over-engineered web application that uses your webcam to see if you're faking your emotions. It cross-references your real-time facial expression with the emoji you select, ensuring complete emotional transparency whether you want it or not.
+The Problem (that doesn't exist)
+In today's digital world, emoji fraud is rampant. People send a smiley face 🙂 while feeling dead inside, or an angry face 😠 when they're just mildly annoyed. We're tackling the global crisis of emotional inauthenticity by forcing users to prove they genuinely feel the emoji they send.
+The Solution (that nobody asked for)
+We present the Emoji Picker with Emotion Verification! This revolutionary tool uses not one, but two complex facial recognition systems to call you out on your emotional dishonesty. Simply pick an emoji, make the face, and our state-of-the-art "Truth-o-Meter" will tell you if you're a "Great match" or a dirty liar ("❌ Mismatch").
+Technical Details
+Technologies/Components Used
+For Software:
+ * Languages used: Python, JavaScript, HTML5, CSS3
+ * Frameworks used:
+   * Backend: Flask
+   * Frontend: TensorFlow.js
+ * Libraries used:
+   * Python: OpenCV, DeepFace, TensorFlow
+   * JavaScript: MediaPipe Face Mesh
+ * Tools used: WebRTC, RESTful API
+For Hardware:
+ * List main components: A standard webcam
+ * List specifications: Any modern webcam supported by your browser
+ * List tools required: A computer with a web browser
+Implementation
+For Software:
+Installation
+# Recommended: Run the setup script
 python3 setup.py
 
+# Or install manually
+pip3 install -r requirements.txt
+
+Run
 # Use the startup script (Linux/Mac)
 ./start_emotion_detector.sh
 
 # Or start manually
-python3 emotion_detector.py &
+python3 emotion_detector.py
 # Then open index.html in your browser
-```
 
-## Troubleshooting
+Project Documentation
+For Software:
+Screenshots
+![Screenshot1](Add screenshot 1 here with proper name)
+Caption: The main user interface with the camera feed active and emoji selection panel.
+![Screenshot2](Add screenshot 2 here with proper name)
+Caption: A "✅ Great match" verification result after the user successfully matches their expression to the 'Happy' emoji.
+![Screenshot3](Add screenshot 3 here with proper name)
+Caption: A "❌ Mismatch" result, indicating the user's expression does not align with the selected emoji.
+Diagrams
+![Workflow](Add your workflow/architecture diagram here)
+Caption: The application's architecture. The frontend first attempts to communicate with the Python Flask backend via a REST API for high-accuracy emotion detection. If the backend is unavailable, it automatically falls back to the in-browser TensorFlow.js model for processing.
+For Hardware:
+This is a software-based project, so hardware schematics and build photos are not applicable.
+Schematic & Circuit
+![Circuit](Add your circuit diagram here)
+Caption: N/A
+![Schematic](Add your schematic diagram here)
+Caption: N/A
+Build Photos
+![Components](Add photo of your components here)
+Caption: N/A
+![Build](Add photos of build process here)
+Caption: N/A
+![Final](Add photo of final product here)
+Caption: N/A
+Project Demo
+Video
+[Add your demo video link here]
+Explain what the video demonstrates: The video shows a user starting the application, selecting different emojis (Happy, Sad, Angry), and modifying their facial expression to match. It demonstrates successful verifications, low confidence warnings, and mismatch errors.
+Additional Demos
+[Add any extra demo materials/links]
+Team Contributions
+ * Muhammad Nasih N :  Devolpment & Implementation
+ * Abhiraj Krishna : Documentation , Presentation & Concept Design
 
-### Python Backend Issues
-- **Import errors**: Run `pip3 install -r requirements.txt` to install dependencies
-- **Camera access denied**: Ensure camera permissions are granted to Python
-- **Port 5000 in use**: Change the port in `emotion_detector.py` or kill the process using port 5000
-- **DeepFace model download**: First run may take time to download pre-trained models
 
-### Frontend Issues
-- **Camera not working**: Ensure you've granted camera permissions to the website
-- **Face not detected**: Make sure your face is clearly visible and well-lit
-- **Model loading error**: Refresh the page and try again
-- **Low confidence**: Try expressing the emotion more clearly or improve lighting
-
-### General Issues
-- **Backend connection failed**: The system will automatically fall back to TensorFlow.js
-- **Performance issues**: Close other applications using the camera
-- **Memory issues**: Restart the Python backend if it becomes unresponsive
-
-## Limitations
-
-- Emotion detection accuracy depends on lighting conditions
-- Facial expressions must be clearly visible
-- Works best with front-facing camera
-- Detection may be less accurate with glasses or facial coverings
+Made with ❤️ at TinkerHub Useless Projects
