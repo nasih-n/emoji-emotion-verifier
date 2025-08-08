@@ -1,4 +1,4 @@
-#<img width="3188" height="1202" alt="thinkerhub logo" src="https://github.com/user-attachments/assets/640387be-be41-4643-98fc-9f7bf8ed281a" />
+<img width="3188" height="1202" alt="thinkerhub logo" src="https://github.com/user-attachments/assets/640387be-be41-4643-98fc-9f7bf8ed281a" />
 
  Emoji Picker with Emotion Verification
 
@@ -76,7 +76,6 @@ Caption: A "⚠️ Questionable " result, indicating the user's expression align
 <img width="3040" height="3238" alt="sad questionable" src="https://github.com/user-attachments/assets/c89cf963-cfd9-4629-9331-ad9017eab0d5" />
 
 
-.....
 Diagrams
 ![diagram](https://github.com/user-attachments/assets/c464c5c4-efe0-42bc-a49c-ac3410cf97d6)
 
