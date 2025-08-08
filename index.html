@@ -3,20 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emoji Picker with Emotion Verification</title>
+    <title>Emoji Truth Detector™ - Ending Emotional Fraud Since 2024</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/face-landmarks-detection"></script>
 </head>
 <body>
     <div class="container">
-        <h1>Emoji Picker with Emotion Verification</h1>
+        <h1>🔍 Emoji Truth Detector™</h1>
+        <div class="project-description">
+            <h2>🚨 Stopping Emotional Fraud, One Face at a Time</h2>
+            <p class="tagline">An over-engineered web application that uses your webcam to see if you're faking your emotions. 
+            It cross-references your real-time facial expression with the emoji you select, ensuring complete emotional 
+            transparency whether you want it or not.</p>
+            
+            <div class="problem-solution">
+                <div class="problem">
+                    <h3>🚨 The Problem (that doesn't exist)</h3>
+                    <p>In today's digital world, emoji fraud is rampant. People send a smiley face 🙂 while feeling dead inside, 
+                    or an angry face 😠 when they're just mildly annoyed. We're tackling the global crisis of emotional 
+                    inauthenticity by forcing users to prove they genuinely feel the emoji they send.</p>
+                </div>
+                
+                <div class="solution">
+                    <h3>💡 The Solution (that nobody asked for)</h3>
+                    <p>We present the Emoji Picker with Emotion Verification! This revolutionary tool uses not one, but 
+                    <strong>two complex facial recognition systems</strong> to call you out on your emotional dishonesty. 
+                    Simply pick an emoji, make the face, and our state-of-the-art "Truth-o-Meter™" will tell you if 
+                    you're a "Great match" or a dirty liar ("❌ Mismatch").</p>
+                </div>
+            </div>
+        </div>
         
         <div class="main-layout">
             <!-- Left Side - Camera -->
             <div class="left-panel">
                 <div class="camera-section">
-                    <h2>Camera Feed</h2>
+                    <h2>📹 Surveillance Feed (For Your Own Good)</h2>
                     <div class="video-container">
                         <video id="video" width="480" height="360" autoplay muted></video>
                         <img id="processed-video" width="480" height="360" style="display: none; position: absolute; top: 0; left: 0;">
@@ -29,12 +52,12 @@
                     <!-- Camera Controls -->
                     <div class="camera-controls">
                         <div class="auto-start-notice">
-                            <p>📹 Camera will start automatically when page loads</p>
+                            <p>🕵️ Our advanced surveillance system will start automatically to monitor your emotional authenticity</p>
                         </div>
                                             <div class="control-buttons">
-                        <button id="start-camera" class="btn primary">Start Camera</button>
-                        <button id="stop-camera" class="btn secondary" disabled>Stop Camera</button>
-                        <button id="test-detection" class="btn secondary">Test Detection</button>
+                        <button id="start-camera" class="btn primary">🚀 Begin Emotional Surveillance</button>
+                        <button id="stop-camera" class="btn secondary" disabled>⏹️ Stop Watching Me</button>
+                        <button id="test-detection" class="btn secondary">🧪 Test Camera</button>
                     </div>
                     </div>
                 </div>
@@ -44,7 +67,8 @@
             <div class="right-panel">
                 <!-- Top Right - Emojis -->
                 <div class="emoji-section">
-                    <h2>Select an Emotion:</h2>
+                    <h2>🎭 Choose Your Alleged Emotion:</h2>
+                    <p class="emoji-warning">⚠️ Warning: We will verify if you're lying</p>
                     <div class="emoji-grid">
                         <button class="emoji-btn" data-emotion="happy">😊</button>
                         <button class="emoji-btn" data-emotion="sad">😢</button>
@@ -57,13 +81,22 @@
                 <!-- Bottom Right - Verification -->
                 <div class="verification-section">
                     <div id="detected-emotion" class="detected-emotion">
-                        <h3>Detected Emotion: <span id="emotion-text">Analyzing...</span></h3>
+                        <h3>🔍 Truth-o-Meter™ Analysis: <span id="emotion-text">Scanning for lies...</span></h3>
                         <div id="emotion-confidence" class="confidence-bar"></div>
+                        <p class="analysis-note">Our dual AI systems are judging you...</p>
                     </div>
                     
                     <div id="verification-result" class="verification-result">
-                        <h3>Verification Result:</h3>
-                        <p id="verification-text">Select an emoji to verify your emotion</p>
+                        <h3>🏛️ Emotional Court Verdict:</h3>
+                        <p id="verification-text">Choose an emoji to begin your emotional trial</p>
+                        <div class="verdict-explanation">
+                            <p><strong>Possible Verdicts:</strong></p>
+                            <ul>
+                                <li>✅ <strong>Emotionally Honest</strong> - You're not a fraud (this time)</li>
+                                <li>⚠️ <strong>Suspicious</strong> - We're watching you closely</li>
+                                <li>❌ <strong>Emotional Fraud Detected</strong> - You've been caught red-handed!</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 

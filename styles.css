@@ -38,11 +38,70 @@ body {
 h1 {
     text-align: center;
     color: #ffffff;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     font-size: 2.5rem;
     font-weight: 500;
     letter-spacing: 2px;
-    text-decoration: underline ;
+    text-decoration: underline;
+}
+
+.project-description {
+    background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 30px;
+    border: 1px solid rgba(255,255,255,0.1);
+    text-align: center;
+}
+
+.project-description h2 {
+    color: #ff6b6b;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.tagline {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #e0e0e0;
+    margin-bottom: 25px;
+    font-style: italic;
+}
+
+.problem-solution {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-top: 25px;
+}
+
+.problem, .solution {
+    background: linear-gradient(145deg, #0f0f0f, #1f1f1f);
+    border-radius: 15px;
+    padding: 20px;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.problem h3 {
+    color: #ff6b6b;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.solution h3 {
+    color: #4ade80;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.problem p, .solution p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #d0d0d0;
+    text-align: left;
 }
 
 .camera-section {
@@ -118,10 +177,22 @@ h1 {
 
 .emoji-section h2 {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     color: #ffffff;
     font-size: 1.5rem;
     font-weight: 300;
+}
+
+.emoji-warning {
+    text-align: center;
+    color: #fbbf24;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    background: rgba(251, 191, 36, 0.1);
+    padding: 8px 15px;
+    border-radius: 15px;
+    border: 1px solid rgba(251, 191, 36, 0.3);
 }
 
 .emoji-grid {
@@ -208,6 +279,41 @@ h1 {
     font-size: 1.1rem;
     line-height: 1.6;
     color: #e0e0e0;
+    margin-bottom: 15px;
+}
+
+.analysis-note {
+    font-size: 0.9rem;
+    color: #9ca3af;
+    font-style: italic;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.verdict-explanation {
+    background: linear-gradient(145deg, #0f0f0f, #1f1f1f);
+    border-radius: 12px;
+    padding: 15px;
+    margin-top: 15px;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.verdict-explanation p {
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+    color: #d0d0d0;
+}
+
+.verdict-explanation ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.verdict-explanation li {
+    padding: 5px 0;
+    font-size: 0.9rem;
+    color: #c0c0c0;
 }
 
 .verification-success {
@@ -302,6 +408,23 @@ h1 {
     .verification-section {
         flex-direction: column;
     }
+    
+    .problem-solution {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .project-description {
+        padding: 20px;
+    }
+    
+    .project-description h2 {
+        font-size: 1.5rem;
+    }
+    
+    .tagline {
+        font-size: 1.1rem;
+    }
 }
 
 @media (max-width: 768px) {
@@ -332,5 +455,37 @@ h1 {
     
     .camera-section h2 {
         font-size: 1.3rem;
+    }
+    
+    .project-description {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .project-description h2 {
+        font-size: 1.3rem;
+    }
+    
+    .tagline {
+        font-size: 1rem;
+    }
+    
+    .problem h3, .solution h3 {
+        font-size: 1rem;
+    }
+    
+    .problem p, .solution p {
+        font-size: 0.9rem;
+    }
+    
+    .control-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .btn {
+        width: 100%;
+        padding: 15px;
+        font-size: 0.9rem;
     }
 }

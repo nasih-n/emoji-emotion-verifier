@@ -177,7 +177,7 @@ class EmotionVerifier {
                 console.log('Python emotion data:', data);
                 
                 if (data.emotion === 'no_face') {
-                    document.getElementById('emotion-text').textContent = 'No face detected';
+                    document.getElementById('emotion-text').textContent = 'Cannot locate suspect';
                     document.getElementById('emotion-confidence').style.setProperty('--confidence', '0%');
                 } else {
                     this.currentEmotion = data.emotion;
@@ -245,8 +245,8 @@ class EmotionVerifier {
         document.getElementById('stop-camera').disabled = true;
         
         // Reset UI
-        document.getElementById('emotion-text').textContent = 'Camera stopped';
-        document.getElementById('verification-text').textContent = 'Select an emoji to verify your emotion';
+        document.getElementById('emotion-text').textContent = 'Surveillance terminated';
+        document.getElementById('verification-text').textContent = 'Choose an emoji to begin your emotional trial';
         document.getElementById('emotion-confidence').style.setProperty('--confidence', '0%');
         
         // Reset video display
@@ -327,7 +327,7 @@ class EmotionVerifier {
     }
     
     showNoFaceDetected() {
-        document.getElementById('emotion-text').textContent = 'No face detected';
+        document.getElementById('emotion-text').textContent = 'Suspect not found';
         document.getElementById('emotion-confidence').style.setProperty('--confidence', '0%');
         
         // Clear canvas and redraw video
@@ -546,16 +546,16 @@ class EmotionVerifier {
         // Check if emotions match
         if (this.selectedEmotion === this.currentEmotion) {
             if (confidence > 0.7) {
-                verificationText.textContent = `✅ Great match! Your ${this.selectedEmotion} expression is genuine (${Math.round(confidence * 100)}% confidence)`;
+                verificationText.textContent = `✅ VERDICT: Emotionally Honest! You're not a fraud (this time). Your ${this.selectedEmotion} expression is genuine with ${Math.round(confidence * 100)}% certainty.`;
                 verificationText.className = 'verification-success';
                 console.log('✅ Verification successful: emotions match with high confidence');
             } else {
-                verificationText.textContent = `⚠️ Emotions match but confidence is low (${Math.round(confidence * 100)}%). Try expressing more clearly.`;
+                verificationText.textContent = `⚠️ VERDICT: Suspicious Activity! Emotions match but our Truth-o-Meter™ shows only ${Math.round(confidence * 100)}% confidence. We're watching you closely...`;
                 verificationText.className = 'verification-neutral';
                 console.log('⚠️ Verification partial: emotions match but low confidence');
             }
         } else {
-            verificationText.textContent = `❌ Mismatch detected! You selected ${this.selectedEmotion} but your expression shows ${this.currentEmotion} (${Math.round(confidence * 100)}% confidence)`;
+            verificationText.textContent = `❌ VERDICT: EMOTIONAL FRAUD DETECTED! You selected ${this.selectedEmotion} but your face betrays ${this.currentEmotion} (${Math.round(confidence * 100)}% certainty). You've been caught red-handed!`;
             verificationText.className = 'verification-failure';
             console.log('❌ Verification failed: emotions do not match');
         }
