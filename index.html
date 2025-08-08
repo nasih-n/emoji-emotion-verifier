@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Emotion Verifier">
+    <title>Emoji Picker with Emotion Verification</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiByeD0iMjQiIGZpbGw9IiMwMDAwMDAiLz4KPHN2ZyB4PSI0OCIgeT0iNDgiIHdpZHRoPSI5NiIgaGVpZ2h0PSI5NiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cGF0aCBkPSJNMTIgMkM2LjQ4IDIgMiA2LjQ4IDIgMTJzNC40OCAxMCAxMCAxMCAxMC00LjQ4IDEwLTEwUzE3LjUyIDIgMTIgMnpNMTIgMjBjLTQuNDEgMC04LTMuNTktOC04czMuNTktOCA4LTggOCAzLjU5IDggOC0zLjU5IDgtOCA4eiIgZmlsbD0iIzRhOTBlMiIvPgo8cGF0aCBkPSJNMTIgNkM4LjY5IDYgNiA4LjY5IDYgMTJzMi42OSA2IDYgNiA2LTIuNjkgNi02LTIuNjktNi02LTZ6bTAgMTBjLTIuMjEgMC00LTEuNzktNC00czEuNzktNCA0LTQgNCAxLjc5IDQgNC0xLjc5IDQtNCA0eiIgZmlsbD0iIzRhOTBlMiIvPgo8L3N2Zz4KPC9zdmc+">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/face-landmarks-detection"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Emoji Picker with Emotion Verification</h1>
+        
+        <div class="main-layout">
+            <!-- Left Side - Camera -->
+            <div class="left-panel">
+                <div class="camera-section">
+                    <h2>Camera Feed</h2>
+                    <div class="video-container">
+                        <video id="video" width="480" height="360" autoplay muted></video>
+                        <img id="processed-video" width="480" height="360" style="display: none; position: absolute; top: 0; left: 0;">
+                        <canvas id="canvas" width="480" height="360" style="display: none;"></canvas>
+                        <div id="camera-loading" class="camera-loading">
+                            <div class="loading-spinner"></div>
+                            <p>Starting camera...</p>
+                        </div>
+                    </div>
+                    <!-- Camera Controls -->
+                    <div class="camera-controls">
+                        <div class="auto-start-notice">
+                            <p>📹 Camera will start automatically when page loads</p>
+                        </div>
+                        <div class="control-buttons">
+                            <button id="start-camera" class="btn primary">Start Camera</button>
+                            <button id="stop-camera" class="btn secondary" disabled>Stop Camera</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side - Content -->
+            <div class="right-panel">
+                <!-- Top Right - Emojis -->
+                <div class="emoji-section">
+                    <h2>Select an Emotion:</h2>
+                    <div class="emoji-grid">
+                        <button class="emoji-btn" data-emotion="happy">😊</button>
+                        <button class="emoji-btn" data-emotion="sad">😢</button>
+                        <button class="emoji-btn" data-emotion="angry">😠</button>
+                        <button class="emoji-btn" data-emotion="fear">😨</button>
+                        <button class="emoji-btn" data-emotion="neutral">😐</button>
+                    </div>
+                </div>
+
+                <!-- Bottom Right - Verification -->
+                <div class="verification-section">
+                    <div id="detected-emotion" class="detected-emotion">
+                        <h3>Detected Emotion: <span id="emotion-text">Analyzing...</span></h3>
+                        <div id="emotion-confidence" class="confidence-bar"></div>
+                    </div>
+                    
+                    <div id="verification-result" class="verification-result">
+                        <h3>Verification Result:</h3>
+                        <p id="verification-text">Select an emoji to verify your emotion</p>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
