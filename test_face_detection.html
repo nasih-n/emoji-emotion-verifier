@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Detection Test</title>
+    <style>
+        body {
+            background: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #333;
+            border-radius: 10px;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .success { background: #28a745; }
+        .error { background: #dc3545; }
+        .warning { background: #ffc107; color: #000; }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover { background: #0056b3; }
+        #video {
+            border: 2px solid #333;
+            border-radius: 10px;
+        }
+        #canvas {
+            border: 2px solid #00ff00;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Face Detection Test</h1>
+    
+    <div class="test-section">
+        <h2>Camera Test</h2>
+        <button onclick="testCamera()">Test Camera Access</button>
+        <div id="camera-status"></div>
+        <video id="video" width="480" height="360" autoplay muted style="display: none;"></video>
+    </div>
+    
+    <div class="test-section">
+        <h2>Python Backend Test</h2>
+        <button onclick="testPythonBackend()">Test Python Backend</button>
+        <div id="python-status"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>TensorFlow.js Test</h2>
+        <button onclick="testTensorFlow()">Test TensorFlow.js</button>
+        <div id="tensorflow-status"></div>
+        <canvas id="canvas" width="480" height="360" style="display: none;"></canvas>
+    </div>
+    
+    <div class="test-section">
+        <h2>Face Detection Test</h2>
+        <button onclick="startFaceDetection()">Start Face Detection</button>
+        <button onclick="stopFaceDetection()">Stop Face Detection</button>
+        <div id="detection-status"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/face-landmarks-detection"></script>
+    <script>
+        let detector = null;
+        let isDetecting = false;
+        let video = document.getElementById('video');
+        let canvas = document.getElementById('canvas');
+        let ctx = canvas.getContext('2d');
+
+        async function testCamera() {
+            const status = document.getElementById('camera-status');
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ 
+                    video: { width: 480, height: 360, facingMode: 'user' } 
+                });
+                video.srcObject = stream;
+                video.style.display = 'block';
+                status.innerHTML = '<div class="status success">✅ Camera access successful</div>';
+            } catch (error) {
+                status.innerHTML = `<div class="status error">❌ Camera error: ${error.message}</div>`;
+            }
+        }
+
+        async function testPythonBackend() {
+            const status = document.getElementById('python-status');
+            try {
+                const response = await fetch('http://localhost:5000/get_emotion');
+                if (response.ok) {
+                    const data = await response.json();
+                    status.innerHTML = `<div class="status success">✅ Python backend connected. Current emotion: ${data.emotion}</div>`;
+                } else {
+                    status.innerHTML = `<div class="status error">❌ Python backend responded with status: ${response.status}</div>`;
+                }
+            } catch (error) {
+                status.innerHTML = `<div class="status error">❌ Python backend not available: ${error.message}</div>`;
+            }
+        }
+
+        async function testTensorFlow() {
+            const status = document.getElementById('tensorflow-status');
+            try {
+                detector = await faceLandmarksDetection.createDetector(
+                    faceLandmarksDetection.SupportedModels.MediaPipeFaceMesh,
+                    { runtime: 'tfjs', refineLandmarks: true, maxFaces: 1 }
+                );
+                status.innerHTML = '<div class="status success">✅ TensorFlow.js model loaded successfully</div>';
+            } catch (error) {
+                status.innerHTML = `<div class="status error">❌ TensorFlow.js error: ${error.message}</div>`;
+            }
+        }
+
+        async function startFaceDetection() {
+            if (!detector) {
+                document.getElementById('detection-status').innerHTML = '<div class="status error">❌ TensorFlow.js not loaded</div>';
+                return;
+            }
+
+            isDetecting = true;
+            canvas.style.display = 'block';
+            video.style.display = 'none';
+            
+            const status = document.getElementById('detection-status');
+            status.innerHTML = '<div class="status warning">🔄 Face detection started...</div>';
+            
+            detectFaces();
+        }
+
+        function stopFaceDetection() {
+            isDetecting = false;
+            canvas.style.display = 'none';
+            video.style.display = 'block';
+            document.getElementById('detection-status').innerHTML = '<div class="status warning">⏹️ Face detection stopped</div>';
+        }
+
+        async function detectFaces() {
+            if (!isDetecting) return;
+
+            try {
+                // Draw video to canvas
+                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                
+                // Detect faces
+                const faces = await detector.estimateFaces(canvas);
+                
+                if (faces.length > 0) {
+                    console.log(`✅ Detected ${faces.length} face(s)`);
+                    
+                    // Draw green border
+                    const face = faces[0];
+                    const keypoints = face.keypoints;
+                    
+                    if (keypoints.length > 0) {
+                        let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+                        
+                        keypoints.forEach(point => {
+                            minX = Math.min(minX, point.x);
+                            minY = Math.min(minY, point.y);
+                            maxX = Math.max(maxX, point.x);
+                            maxY = Math.max(maxY, point.y);
+                        });
+                        
+                        // Clear and redraw
+                        ctx.clearRect(0, 0, canvas.width, canvas.height);
+                        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                        
+                        // Draw green border
+                        ctx.strokeStyle = '#00ff00';
+                        ctx.lineWidth = 4;
+                        ctx.strokeRect(minX - 15, minY - 15, maxX - minX + 30, maxY - minY + 30);
+                        
+                        // Add label
+                        ctx.fillStyle = '#00ff00';
+                        ctx.font = 'bold 18px Arial';
+                        ctx.fillText('FACE DETECTED', minX, minY - 20);
+                        
+                        document.getElementById('detection-status').innerHTML = '<div class="status success">✅ Face detected with green border!</div>';
+                    }
+                } else {
+                    console.log('❌ No faces detected');
+                    document.getElementById('detection-status').innerHTML = '<div class="status warning">❌ No faces detected</div>';
+                }
+            } catch (error) {
+                console.error('❌ Detection error:', error);
+                document.getElementById('detection-status').innerHTML = `<div class="status error">❌ Detection error: ${error.message}</div>`;
+            }
+
+            // Continue detection
+            requestAnimationFrame(detectFaces);
+        }
+
+        // Auto-run tests
+        window.onload = function() {
+            testCamera();
+            testPythonBackend();
+            testTensorFlow();
+        };
+    </script>
+</body>
+</html>
